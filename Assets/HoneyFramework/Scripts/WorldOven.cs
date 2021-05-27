@@ -313,7 +313,7 @@ namespace HoneyFramework
                 //if this is chunk refresh we need to destroy old texture soon
                 if (currentChunk.diffuse != null) currentChunk.texturesForCleanup.Add(currentChunk.diffuse);
                 currentChunk.diffuse = texture;
-                SaveImage.SaveJPG(texture, currentChunk.position.ToString() + "d", randomIndex.ToString());
+//                SaveImage.SaveJPG(texture, currentChunk.position.ToString() + "d", randomIndex.ToString());
                 currentChunk.CompressDiffuse();
 
                 RenderTexture.active = null;
@@ -328,7 +328,7 @@ namespace HoneyFramework
 
                 World.GetInstance().ReadyToPolishChunk(currentChunk);
 				if (CoroutineHelper.CheckIfPassed(30)) { yield return null; CoroutineHelper.StartTimer(); }
-				SaveMesh.SaveOBJ(currentChunk.chunkObject.GetComponent<MeshFilter>(), currentChunk.position.ToString(), randomIndex.ToString());
+//				SaveMesh.SaveOBJ(currentChunk.chunkObject.GetComponent<MeshFilter>(), currentChunk.position.ToString(), randomIndex.ToString());
                 RenderTargetManager.ReleaseAll();
                 
                 if (CoroutineHelper.CheckIfPassed(30)) { yield return null; CoroutineHelper.StartTimer(); }
