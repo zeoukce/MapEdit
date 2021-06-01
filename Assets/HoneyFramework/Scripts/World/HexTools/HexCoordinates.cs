@@ -43,6 +43,7 @@ namespace HoneyFramework
 			if (Hex.HEX2D) {
 				// 对齐到二维坐标
 				worldPos.x = pos.x*2;
+				worldPos.y += 0.195f;
 				if (pos.x % 2 == 0) {
 					worldPos.y =  worldPos.y - Hex.GetDirY ().y;
 				}
