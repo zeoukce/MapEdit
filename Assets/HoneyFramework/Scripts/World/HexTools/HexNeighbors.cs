@@ -88,22 +88,33 @@ namespace HoneyFramework
         {
             if (maxDistance < 0 || minDistance > maxDistance) return new List<Vector3i>();
             List<Vector3i> results = new List<Vector3i>();
-
-            for (int x = -maxDistance; x <= maxDistance; x++)
-            {
-                for (int y = Mathf.Max(-maxDistance, -x - maxDistance); y <= Mathf.Min(maxDistance, -x + maxDistance); y++)
-                {
-                    int z = -x - y;
-                    //distance from starting point have to be within range minimumRadius => maximumRadius
-                    //our calculation takes care only for those up to maximum range but we have to discard those which are in range shorter than allowed minimum
-                    Vector3i v = new Vector3i(x, y, z);
-                    if (HexCoordinates.HexDistance(Vector3i.zero, v) >= minDistance)
-                    {
-                        results.Add(v + startPosition);
-                    }
-                }
-            }
-
+			if (Hex.HEX2D) {
+				for (int x = -maxDistance; x <= maxDistance; x++) {
+					for (int y = -maxDistance; y <= maxDistance; y++) {
+						int z = -x - y;
+						Vector3i v = new Vector3i(x, y, z);
+						if (HexCoordinates.HexDistance(Vector3i.zero, v) >= minDistance)
+						{
+							results.Add(v + startPosition);
+						}
+					}
+				}
+			} else {
+	            for (int x = -maxDistance; x <= maxDistance; x++)
+	            {
+	                for (int y = Mathf.Max(-maxDistance, -x - maxDistance); y <= Mathf.Min(maxDistance, -x + maxDistance); y++)
+	                {
+	                    int z = -x - y;
+	                    //distance from starting point have to be within range minimumRadius => maximumRadius
+	                    //our calculation takes care only for those up to maximum range but we have to discard those which are in range shorter than allowed minimum
+	                    Vector3i v = new Vector3i(x, y, z);
+	                    if (HexCoordinates.HexDistance(Vector3i.zero, v) >= minDistance)
+	                    {
+	                        results.Add(v + startPosition);
+	                    }
+	                }
+	            }
+			}
             return results;
         }
 
