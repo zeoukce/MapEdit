@@ -93,7 +93,7 @@ namespace HoneyFramework
 					for (int y = -maxDistance; y <= maxDistance; y++) {
 						int z = -x - y;
 						Vector3i v = new Vector3i(x, y, z);
-						if (HexCoordinates.HexDistance(Vector3i.zero, v) >= minDistance)
+						if (Mathf.Max(Mathf.Abs(x),Mathf.Abs(y)) >= minDistance)
 						{
 							results.Add(v + startPosition);
 						}
